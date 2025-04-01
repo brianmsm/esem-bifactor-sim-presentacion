@@ -1,0 +1,25 @@
+---
+title: "Cargas cruzadas y correlaciones entre factores específicos en CFA y ESEM Bifactor"
+subtitle: "Un estudio de simulación con estructuras bifactor complejas y rotación extended target"
+institute: "Universidad Complutense de Madrid"
+author: Brian N. Peña-Calero
+format:
+  metropolis-revealjs:
+    mouse-wheel: true
+    lang: es
+    code-link: true
+    progress: true
+    slide-number: true
+date: now
+date-format: "DD MMMM, YYYY"
+execute: 
+  echo: true
+  dpi: 300
+  cache: true
+slslslslslide-number: true
+embed-resources: true
+lightbox: true
+editor_options: 
+  chunk_output_type: console
+---
+
