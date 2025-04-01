@@ -90,7 +90,7 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 |---------------------------------|-------------------------------------------------------------------------|
 | Correlación entre FGs           | .20, .50, .80                                                           |
 | Correlación entre FEs           | 0.00 (ortogonales), 0.30 (correlacionados)                              |
-| Cargas cruzadas (FE)            | "none", "phantom" (~0 ± 0.05), "0.15", "0.25", "0.40"                    |
+| Cargas cruzadas (FE)            | "none", "phantom" (~0 ± 0.05), "0.15", "0.25"                    |
 | % de ítems con cargas cruzadas  | "0", "20%", "40%"                                                      |
 | Ruta de cargas cruzadas (FE)    | "no aplica", "sameFG", "diffFG"                                         |
 | Cargas cruzadas debidas al FG   | "none", "phantom" (~0 ± 0.05)                                           |
@@ -99,11 +99,11 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 
 | Factor                          | Niveles                                                                 |
 |---------------------------------|-------------------------------------------------------------------------|
-| Tamaño muestral                 | 200, 500, 1000                                                           |
+| Tamaño muestral                 | 200, 500, 800                                                           |
 | Estructura simulada             | 2 FGs, 6 FEs (3 por FG), 5 ítems por FE                                  |
 | Cargas principales   | FG: 0.60–0.80; FE: 0.30 ± 0.05                                           |
 
-→ **Total: 252 combinaciones de simulación únicas**
+→ **Total: 180 combinaciones de simulación únicas**
 
 - Cuando `crossload_mag = "none"`, el `% de ítems` es `"0"`, `crossload_route = "no aplica"` y `crossload_FG = "none"`.
 - Cuando `crossload_mag = "phantom"`, todas las cargas cruzadas (FE y FG) son ~0 (±0.05).
@@ -112,7 +112,7 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 ::: {.notes}
 - Cuando `crossload_mag = "none"`, no se permiten cargas cruzadas, el `% de ítems` es `"0"`, `crossload_route = "no aplica"` y `crossload_FG = "none"`.
 - Cuando `crossload_mag = "phantom"`, todas las cargas cruzadas (FE y FG) son ~0 (±0.05) y afectan al 100% de las posiciones no principales.
-- Cuando `crossload_mag` tiene valores "0.15", "0.25" o "0.40", un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas phantom; además, `crossload_FG = "phantom"`.
+- Cuando `crossload_mag` tiene valores "0.15" o "0.25", un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas phantom; además, `crossload_FG = "phantom"`.
 :::
 
 ## Modelos a estimar
@@ -325,11 +325,11 @@ library(SimDesign)
 Design <- createDesign(
   corr_FG = c(0.20, 0.50, 0.80),
   corr_FE = c(0.00, 0.30),
-  crossload_mag = c("none", "phantom", "0.15", "0.25", "0.40"),
+  crossload_mag = c("none", "phantom", "0.15", "0.25"),
   crossload_perc = c("0", "0.20", "0.40"),
   crossload_route = c("no_aplica", "sameFG", "diffFG"),
   crossload_FG = c("none", "phantom"),
-  N = c(200, 500, 1000),
+  N = c(200, 500, 800),
   
   subset = !(
     # crossload_mag == "none" → todo debe ser explícitamente "none", "0", "no_aplica"

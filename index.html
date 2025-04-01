@@ -1401,7 +1401,7 @@ Brian N. Peña-Calero
 </tr>
 <tr class="odd">
 <td>Cargas cruzadas (FE)</td>
-<td>“none”, “phantom” (~0 ± 0.05), “0.15”, “0.25”, “0.40”</td>
+<td>“none”, “phantom” (~0 ± 0.05), “0.15”, “0.25”</td>
 </tr>
 <tr class="even">
 <td>% de ítems con cargas cruzadas</td>
@@ -1429,7 +1429,7 @@ Brian N. Peña-Calero
 <tbody>
 <tr class="odd">
 <td>Tamaño muestral</td>
-<td>200, 500, 1000</td>
+<td>200, 500, 800</td>
 </tr>
 <tr class="even">
 <td>Estructura simulada</td>
@@ -1441,7 +1441,7 @@ Brian N. Peña-Calero
 </tr>
 </tbody>
 </table>
-<p>→ <strong>Total: 252 combinaciones de simulación únicas</strong></p>
+<p>→ <strong>Total: 180 combinaciones de simulación únicas</strong></p>
 <ul>
 <li>Cuando <code>crossload_mag = &quot;none&quot;</code>, el <code>% de ítems</code> es <code>&quot;0&quot;</code>, <code>crossload_route = &quot;no aplica&quot;</code> y <code>crossload_FG = &quot;none&quot;</code>.</li>
 <li>Cuando <code>crossload_mag = &quot;phantom&quot;</code>, todas las cargas cruzadas (FE y FG) son ~0 (±0.05).</li>
@@ -1450,7 +1450,7 @@ Brian N. Peña-Calero
 <aside class="notes"><ul>
 <li>Cuando <code>crossload_mag = &quot;none&quot;</code>, no se permiten cargas cruzadas, el <code>% de ítems</code> es <code>&quot;0&quot;</code>, <code>crossload_route = &quot;no aplica&quot;</code> y <code>crossload_FG = &quot;none&quot;</code>.</li>
 <li>Cuando <code>crossload_mag = &quot;phantom&quot;</code>, todas las cargas cruzadas (FE y FG) son ~0 (±0.05) y afectan al 100% de las posiciones no principales.</li>
-<li>Cuando <code>crossload_mag</code> tiene valores “0.15”, “0.25” o “0.40”, un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas phantom; además, <code>crossload_FG = &quot;phantom&quot;</code>.</li>
+<li>Cuando <code>crossload_mag</code> tiene valores “0.15” o “0.25”, un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas phantom; además, <code>crossload_FG = &quot;phantom&quot;</code>.</li>
 </ul><style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1579,11 +1579,11 @@ display:block!important;
 <span id="cb4-3"><a href></a>Design <span class="ot">&lt;-</span> <span class="fu">createDesign</span>(</span>
 <span id="cb4-4"><a href></a>  <span class="at">corr_FG =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.50</span>, <span class="fl">0.80</span>),</span>
 <span id="cb4-5"><a href></a>  <span class="at">corr_FE =</span> <span class="fu">c</span>(<span class="fl">0.00</span>, <span class="fl">0.30</span>),</span>
-<span id="cb4-6"><a href></a>  <span class="at">crossload_mag =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;phantom&quot;</span>, <span class="st">&quot;0.15&quot;</span>, <span class="st">&quot;0.25&quot;</span>, <span class="st">&quot;0.40&quot;</span>),</span>
+<span id="cb4-6"><a href></a>  <span class="at">crossload_mag =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;phantom&quot;</span>, <span class="st">&quot;0.15&quot;</span>, <span class="st">&quot;0.25&quot;</span>),</span>
 <span id="cb4-7"><a href></a>  <span class="at">crossload_perc =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;0.20&quot;</span>, <span class="st">&quot;0.40&quot;</span>),</span>
 <span id="cb4-8"><a href></a>  <span class="at">crossload_route =</span> <span class="fu">c</span>(<span class="st">&quot;no_aplica&quot;</span>, <span class="st">&quot;sameFG&quot;</span>, <span class="st">&quot;diffFG&quot;</span>),</span>
 <span id="cb4-9"><a href></a>  <span class="at">crossload_FG =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;phantom&quot;</span>),</span>
-<span id="cb4-10"><a href></a>  <span class="at">N =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>),</span>
+<span id="cb4-10"><a href></a>  <span class="at">N =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">800</span>),</span>
 <span id="cb4-11"><a href></a>  </span>
 <span id="cb4-12"><a href></a>  <span class="at">subset =</span> <span class="sc">!</span>(</span>
 <span id="cb4-13"><a href></a>    <span class="co"># crossload_mag == &quot;none&quot; → todo debe ser explícitamente &quot;none&quot;, &quot;0&quot;, &quot;no_aplica&quot;</span></span>
@@ -1604,7 +1604,7 @@ display:block!important;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href></a>Design</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 252 × 7
+<pre><code># A tibble: 180 × 7
    corr_FG corr_FE crossload_mag crossload_perc crossload_route crossload_FG
      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;       
  1     0.2     0   none          0              no_aplica       none        
@@ -1617,7 +1617,7 @@ display:block!important;
  8     0.5     0   phantom       0              no_aplica       phantom     
  9     0.8     0   phantom       0              no_aplica       phantom     
 10     0.2     0.3 phantom       0              no_aplica       phantom     
-# ℹ 242 more rows
+# ℹ 170 more rows
 # ℹ 1 more variable: N &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -2922,7 +2922,7 @@ window.QuartoSupport = function () {
         }
       }
     });
-    </script><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
+    </script><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {
