@@ -15,7 +15,6 @@ date-format: "DD MMMM, YYYY"
 execute: 
   echo: true
   dpi: 300
-  cache: true
 slslslslslide-number: true
 embed-resources: true
 lightbox: true
@@ -40,29 +39,31 @@ La Exploratory Structural Equation Modeling (ESEM) con rotación extended target
 
 ## Preguntas de Investigación
 
-1.  ¿Qué efectos tiene omitir un factor general (FG) cuando la estructura simulada contiene dos?
-2.  ¿Cuál es el impacto de permitir correlaciones entre factores específicos (FEs) cuando en realidad son ortogonales, y viceversa?
-3.  ¿Qué sucede cuando el modelo CFA/ESEM no refleja correctamente la correlación real entre los FGs?
-4.  ¿En qué medida las cargas cruzadas triviales, menores o moderadas afectan el ajuste y recuperación de parámetros?
+1. ¿Qué efectos tiene omitir un factor general (FG) cuando la estructura simulada contiene dos?
+2. ¿Cuál es el impacto de permitir correlaciones entre factores específicos (FEs) cuando en realidad son ortogonales, y viceversa?
+3. ¿Qué sucede cuando el modelo CFA/ESEM no refleja correctamente la correlación real entre los FGs?
+4. ¿En qué medida las cargas cruzadas triviales, menores o moderadas afectan el ajuste y recuperación de parámetros?
 
 ## Preguntas de Investigación
 
-5.  ¿Pueden los modelos ESEM bifactor con rotación extended target inducir cargas cruzadas cuando no existen?
-6.  ¿Qué diferencias existen en la precisión de recuperación de parámetros (cargas, correlaciones, convergencia) entre modelos CFA y ESEM bifactor bajo distintas condiciones simuladas?
-7.  ¿Qué diferencias en requisitos de tamaño muestral se presentan entre modelos CFA y ESEM bifactor?
+5. ¿Pueden los modelos ESEM bifactor con rotación extended target inducir cargas cruzadas cuando estas no existen?
+6. ¿Puede el modelo CFA bifactor recuperar correctamente la estructura cuando las cargas cruzadas (en FE o FG) son inexistentes o triviales?
+7. ¿Qué diferencias existen en la precisión de recuperación de parámetros (cargas, correlaciones, convergencia) entre modelos CFA y ESEM bifactor bajo distintas condiciones simuladas?
+8. ¿Qué diferencias en requisitos de tamaño muestral se presentan entre modelos CFA y ESEM bifactor?
 
 ## Hipótesis
 
--   H1: Omitir un FG en la especificación del modelo producirá mal ajuste y sesgo en estimaciones de correlaciones entre FEs.
--   H2: Modelar correlaciones entre FEs cuando no existen tenderá a generar correlaciones espurias, especialmente cuando un FG ha sido omitido.
--   H3: La omisión de correlaciones reales entre FEs generará mal ajuste y sesgo en cargas.
--   H4: Las cargas cruzadas reales (menores o moderadas) serán mejor recuperadas por ESEM bifactor con extended target que por CFA bifactor.
-
+- H1: Omitir un FG en la especificación del modelo producirá mal ajuste y sesgo en estimaciones de correlaciones entre FEs.
+- H2: Modelar correlaciones entre FEs cuando no existen tenderá a generar correlaciones espurias, especialmente cuando un FG ha sido omitido.
+- H3: La omisión de correlaciones reales entre FEs generará mal ajuste y sesgo en cargas.
+- H4: Las cargas cruzadas reales (menores o moderadas) serán mejor recuperadas por ESEM bifactor con extended target que por CFA bifactor.
+  
 ## Hipótesis
 
--   H5: ESEM bifactor con extended target tenderá a generar cargas cruzadas espurias cuando estas no existen, aunque en menor magnitud si se especifica correctamente la estructura general.
--   H6: La correlación entre FGs influirá en la aparición de correlaciones espurias entre FEs cuando el modelo esté incorrectamente especificado.
--   H7: ESEM bifactor con extended target requerirá tamaños muestrales ligeramente mayores para convergencia estable y recuperación precisa.
+- H5: ESEM bifactor con extended target tenderá a generar cargas cruzadas espurias cuando estas no existen, aunque en menor magnitud si se especifica correctamente la estructura general.
+- H6: CFA bifactor funcionará correctamente cuando las cargas cruzadas (en FE o FG) sean nulas o triviales, pero fallará cuando estas sean relevantes.
+- H7: La correlación entre FGs influirá en la aparición de correlaciones espurias entre FEs cuando el modelo esté incorrectamente especificado.
+- H8: ESEM bifactor con extended target requerirá tamaños muestrales ligeramente mayores para convergencia estable y recuperación precisa.
 
 ## Objetivos Generales
 
@@ -70,29 +71,49 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 
 ## Objetivos Específicos
 
-1.  Comparar el ajuste global y la recuperación de parámetros entre modelos CFA y ESEM bifactor en estructuras con 2 FGs.
-2.  Evaluar el impacto de omitir un FG sobre las correlaciones estimadas entre FEs.
-3.  Determinar si modelar correlaciones entre FEs mejora el ajuste o genera sesgos cuando estas no existen en la población.
-4.  Explorar la aparición de cargas cruzadas espurias en modelos ESEM bifactor bajo estructuras simuladas sin cargas cruzadas.
-5.  Analizar el efecto del tamaño muestral sobre convergencia, ajuste y precisión de estimaciones.
-6.  Estimar el sesgo relativo en cargas, correlaciones y convergencia según modelo y condición simulada.
+1. Comparar el ajuste global y la recuperación de parámetros entre modelos CFA y ESEM bifactor en estructuras con 2 FGs.
+2. Evaluar el impacto de omitir un FG sobre las correlaciones estimadas entre FEs.
+3. Determinar si modelar correlaciones entre FEs mejora el ajuste o genera sesgos cuando estas no existen en la población.
+4. Explorar la aparición de cargas cruzadas espurias en modelos ESEM bifactor bajo estructuras simuladas sin cargas cruzadas reales.
+
+## Objetivos Específicos
+
+5. Evaluar si CFA bifactor puede recuperar correctamente la estructura en contextos sin cargas cruzadas o con cargas fantasmas (triviales).
+6. Analizar el efecto del tamaño muestral sobre convergencia, ajuste y precisión de estimaciones.
+7. Estimar el sesgo relativo en cargas, correlaciones y convergencia según modelo y condición simulada.
 
 # Metodología
 
 ## Diseño de Simulación
 
-| Factor                      | Niveles                                    |
-|-----------------------------|--------------------------------------------|
-| Correlación entre FGs       | .20, .50, .80                              |
-| Correlación entre FEs       | 0.00 (ortogonales), 0.30 (correlacionados) |
-| \% de cargas cruzadas       | 0%, 20%, 40%                               |
-| Magnitud de cargas cruzadas | 0.15, 0.25, 0.40 (solo si % \> 0%)         |
-| Ruta de cargas cruzadas     | Dentro del mismo FG, hacia otro FG         |
-| Tamaño muestral             | 200, 500, 1000                             |
-| Estructura simulada         | 2 FGs, 6 FEs (3 por FG), 5 ítems por FE    |
-| Cargas principales (lambda) | FG: 0.60–0.80; FE: 0.30 ± 0.05             |
+| Factor                          | Niveles                                                                 |
+|---------------------------------|-------------------------------------------------------------------------|
+| Correlación entre FGs           | .20, .50, .80                                                           |
+| Correlación entre FEs           | 0.00 (ortogonales), 0.30 (correlacionados)                              |
+| Cargas cruzadas (FE)            | "none", "phantom" (~0 ± 0.05), "0.15", "0.25", "0.40"                    |
+| % de ítems con cargas cruzadas  | "0", "20%", "40%"                                                      |
+| Ruta de cargas cruzadas (FE)    | "no aplica", "sameFG", "diffFG"                                         |
+| Cargas cruzadas debidas al FG   | "none", "phantom" (~0 ± 0.05)                                           |
 
-→ Total: 234 combinaciones de simulación únicas
+## Diseño de Simulación
+
+| Factor                          | Niveles                                                                 |
+|---------------------------------|-------------------------------------------------------------------------|
+| Tamaño muestral                 | 200, 500, 1000                                                           |
+| Estructura simulada             | 2 FGs, 6 FEs (3 por FG), 5 ítems por FE                                  |
+| Cargas principales   | FG: 0.60–0.80; FE: 0.30 ± 0.05                                           |
+
+→ **Total: 252 combinaciones de simulación únicas**
+
+- Cuando `crossload_mag = "none"`, el `% de ítems` es `"0"`, `crossload_route = "no aplica"` y `crossload_FG = "none"`.
+- Cuando `crossload_mag = "phantom"`, todas las cargas cruzadas (FE y FG) son ~0 (±0.05).
+- Los otros casos de `crossload_mag`, un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas `phantom`.
+
+::: {.notes}
+- Cuando `crossload_mag = "none"`, no se permiten cargas cruzadas, el `% de ítems` es `"0"`, `crossload_route = "no aplica"` y `crossload_FG = "none"`.
+- Cuando `crossload_mag = "phantom"`, todas las cargas cruzadas (FE y FG) son ~0 (±0.05) y afectan al 100% de las posiciones no principales.
+- Cuando `crossload_mag` tiene valores "0.15", "0.25" o "0.40", un porcentaje (20% o 40%) de los ítems presentará dichas cargas cruzadas, mientras que el resto tendrá cargas phantom; además, `crossload_FG = "phantom"`.
+:::
 
 ## Modelos a estimar
 
@@ -106,6 +127,134 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
     f)  1 FG con FEs correlacionados (1FG-FE↔)
     g)  2 FGs con FEs ortogonales (2FG-FE⊥)
     h)  2 FGs con FEs correlacionados (2FG-FE↔)
+    
+## Ejemplo de modelos:
+
+```{r}
+#| echo: false
+# Parámetros
+n_FG <- 2
+n_FE <- 6
+n_items_per_FE <- 5
+total_items <- n_FE * n_items_per_FE
+item_names <- paste0("Item", 1:total_items)
+
+# Función para generar matriz de cargas con fluctuaciones pequeñas
+generate_loadings <- function(n_FE, n_items_per_FE, n_FG, seed = 456) {
+  set.seed(seed)
+  
+  total_items <- n_FE * n_items_per_FE
+  loadings_general <- matrix(0, nrow = total_items, ncol = n_FG)
+  loadings_specific <- matrix(0, nrow = total_items, ncol = n_FE)
+  
+  for (fe in 1:n_FE) {
+    idx <- ((fe - 1) * n_items_per_FE + 1):(fe * n_items_per_FE)
+    
+    # Asignar FG según grupo
+    fg <- ifelse(fe <= n_FE / 2, 1, 2)
+    
+    # Cargas aleatorias en rangos definidos
+    loadings_general[idx, fg] <- runif(n_items_per_FE, min = 0.60, max = 0.80)
+    loadings_specific[idx, fe] <- runif(n_items_per_FE, min = 0.25, max = 0.35)
+  }
+  
+  list(
+    loadings_general = loadings_general,
+    loadings_specific = loadings_specific
+  )
+}
+
+generate_esem_loadings <- function(n_FE, n_items_per_FE, n_FG, crossload_type = "phantom", seed = 123) {
+  set.seed(seed)
+  
+  total_items <- n_FE * n_items_per_FE
+  loadings_general <- matrix(0, nrow = total_items, ncol = n_FG)
+  loadings_specific <- matrix(0, nrow = total_items, ncol = n_FE)
+  
+  # --- CARGAS PRINCIPALES ---
+  for (fe in 1:n_FE) {
+    idx <- ((fe - 1) * n_items_per_FE + 1):(fe * n_items_per_FE)
+    fg <- ifelse(fe <= n_FE / 2, 1, 2)
+    
+    # Asignar cargas principales
+    loadings_general[idx, fg] <- runif(n_items_per_FE, 0.60, 0.80)
+    loadings_specific[idx, fe] <- runif(n_items_per_FE, 0.25, 0.35)
+  }
+  
+  # --- CARGAS CRUZADAS ---
+  phantom_range <- c(-0.05, 0.05)
+  possible_mags <- c("0.15" = 0.15, "0.25" = 0.25, "0.40" = 0.40)
+  
+  if (crossload_type == "none") {
+    # Solo se agregan cargas phantom (muy pequeñas) en factores donde no carga el ítem
+    loadings_specific[loadings_specific == 0] <- runif(sum(loadings_specific == 0), phantom_range[1], phantom_range[2])
+    
+  } else if (crossload_type == "phantom") {
+    loadings_specific[loadings_specific == 0] <- runif(sum(loadings_specific == 0), phantom_range[1], phantom_range[2])
+    loadings_general[loadings_general == 0] <- runif(sum(loadings_general == 0), phantom_range[1], phantom_range[2])
+    
+  } else if (crossload_type %in% names(possible_mags)) {
+    magnitude <- possible_mags[[crossload_type]]
+    perc_items <- ifelse(crossload_type == "0.15", 0.2, 0.4)
+    n_crossloadings <- round(total_items * perc_items)
+    
+    candidate_rows <- sample(1:total_items, n_crossloadings, replace = FALSE)
+    
+    for (item in candidate_rows) {
+      fe_main <- which(loadings_specific[item, ] != 0)
+      fe_possible <- setdiff(1:n_FE, fe_main)
+      fe_target <- sample(fe_possible, 1)
+      loadings_specific[item, fe_target] <- magnitude
+    }
+    
+    # Phantom en FEs no asignados
+    loadings_specific[loadings_specific == 0] <- runif(sum(loadings_specific == 0), phantom_range[1], phantom_range[2])
+    
+    # También phantom en FGs no asignados
+    loadings_general[loadings_general == 0] <- runif(sum(loadings_general == 0), phantom_range[1], phantom_range[2])
+    
+  } else {
+    stop("Tipo de carga cruzada no reconocido.")
+  }
+  
+  # Resultado combinado
+  cbind(loadings_general, loadings_specific)
+}
+
+# Crear matriz fija de cargas una sola vez
+bifactor_cfa <- generate_loadings(n_FE, n_items_per_FE, n_FG)
+
+bifactor_cfa_matrix <- cbind(bifactor_cfa$loadings_general, bifactor_cfa$loadings_specific)
+# Generar matriz ESEM bifactor
+esem_matrix <- generate_esem_loadings(n_FE, n_items_per_FE, n_FG, crossload_type = "0.25",
+                                      seed = 123)
+```
+
+```{r}
+#| echo: false
+library(plot.matrix)
+```
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5.5
+plot(bifactor_cfa_matrix, main = "CFA Bifactor")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5.5
+plot(esem_matrix, main = "ESEM Bifactor con carga cruzada")
+```
+:::
+:::::
+
+
+
 
 ## Plan de Análisis
 
@@ -117,9 +266,14 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 4.  **Detección de efectos espurios**:
     -   Cargas cruzadas estimadas donde no deberían
     -   Correlaciones entre FEs inducidas por omisión de FG
+    
+## Plan de Análisis
+
 5.  **Comparación de modelos**:
     -   ¿Cuál ofrece mejor ajuste y menor sesgo según cada estructura?
     -   ¿Cuál es más robusto frente a especificación incorrecta?
+6. **Evaluación según tamaño muestral**:
+    - Comparar convergencia, ajuste y precisión entre N = 200, 500 y 1000
 
 # Sobre la Simulación
 
@@ -171,13 +325,24 @@ library(SimDesign)
 Design <- createDesign(
   corr_FG = c(0.20, 0.50, 0.80),
   corr_FE = c(0.00, 0.30),
-  crossload_perc = c(0, 0.2, 0.4),
-  crossload_mag = c(0.15, 0.25, 0.40),
-  crossload_route = c("sameFG", "diffFG"),
+  crossload_mag = c("none", "phantom", "0.15", "0.25", "0.40"),
+  crossload_perc = c("0", "0.20", "0.40"),
+  crossload_route = c("no_aplica", "sameFG", "diffFG"),
+  crossload_FG = c("none", "phantom"),
   N = c(200, 500, 1000),
+  
   subset = !(
-    crossload_perc == 0 &
-      (crossload_mag != 0.15 | crossload_route != "sameFG")
+    # crossload_mag == "none" → todo debe ser explícitamente "none", "0", "no_aplica"
+    (crossload_mag == "none" &
+       (crossload_perc != "0" | crossload_route != "no_aplica" | crossload_FG != "none")) |
+      
+      # crossload_mag == "phantom" → también es una forma pura
+      (crossload_mag == "phantom" &
+         (crossload_perc != "0" | crossload_route != "no_aplica" | crossload_FG != "phantom")) |
+      
+      # Si hay cargas cruzadas reales (magnitudes definidas)
+      (crossload_mag %in% c("0.15", "0.25", "0.40") & 
+         (crossload_perc == "0" | crossload_route == "no_aplica" | crossload_FG != "phantom"))
   )
 )
 ```
