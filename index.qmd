@@ -21,5 +21,175 @@ embed-resources: true
 lightbox: true
 editor_options: 
   chunk_output_type: console
+bibliography: references.bib
 ---
 
+# Introducción
+
+## Planteamiento del Problema
+
+Los modelos bifactor tradicionales permiten evaluar simultáneamente un factor general y múltiples factores específicos, ofreciendo índices (e.g., ω_H, ECV, PUC) que clarifican la distribución de la varianza común en una estructura factorial compleja [@rodriguez2016].
+
+Sin embargo, en escenarios reales, podría existir más de un factor general o una estructura donde múltiples factores generales conviven junto con factores específicos, configuraciones abordadas bajo enfoques como los modelos de múltiples factores generales (Multiple General Factors - MGF; [@jiménez2023]).
+
+## Planteamiento del Problema
+
+En estos contextos, utilizar enfoques estrictamente confirmatorios (CFA bifactor) suele imponer restricciones poco realistas, como la ausencia completa de cargas cruzadas, generando estimaciones potencialmente sesgadas o problemas de ajuste del modelo.
+
+La Exploratory Structural Equation Modeling (ESEM) con rotación extended target [@garcía-garzón2020; @howard2018] podría solucionar estas limitaciones, permitiendo modelar cargas cruzadas menores y expectativas teóricas flexibles sobre las correlaciones factoriales entre múltiples factores generales.
+
+## Preguntas de Investigación
+
+1.  ¿Qué efectos tiene omitir un factor general (FG) cuando la estructura simulada contiene dos?
+2.  ¿Cuál es el impacto de permitir correlaciones entre factores específicos (FEs) cuando en realidad son ortogonales, y viceversa?
+3.  ¿Qué sucede cuando el modelo CFA/ESEM no refleja correctamente la correlación real entre los FGs?
+4.  ¿En qué medida las cargas cruzadas triviales, menores o moderadas afectan el ajuste y recuperación de parámetros?
+
+## Preguntas de Investigación
+
+5.  ¿Pueden los modelos ESEM bifactor con rotación extended target inducir cargas cruzadas cuando no existen?
+6.  ¿Qué diferencias existen en la precisión de recuperación de parámetros (cargas, correlaciones, convergencia) entre modelos CFA y ESEM bifactor bajo distintas condiciones simuladas?
+7.  ¿Qué diferencias en requisitos de tamaño muestral se presentan entre modelos CFA y ESEM bifactor?
+
+## Hipótesis
+
+-   H1: Omitir un FG en la especificación del modelo producirá mal ajuste y sesgo en estimaciones de correlaciones entre FEs.
+-   H2: Modelar correlaciones entre FEs cuando no existen tenderá a generar correlaciones espurias, especialmente cuando un FG ha sido omitido.
+-   H3: La omisión de correlaciones reales entre FEs generará mal ajuste y sesgo en cargas.
+-   H4: Las cargas cruzadas reales (menores o moderadas) serán mejor recuperadas por ESEM bifactor con extended target que por CFA bifactor.
+
+## Hipótesis
+
+-   H5: ESEM bifactor con extended target tenderá a generar cargas cruzadas espurias cuando estas no existen, aunque en menor magnitud si se especifica correctamente la estructura general.
+-   H6: La correlación entre FGs influirá en la aparición de correlaciones espurias entre FEs cuando el modelo esté incorrectamente especificado.
+-   H7: ESEM bifactor con extended target requerirá tamaños muestrales ligeramente mayores para convergencia estable y recuperación precisa.
+
+## Objetivos Generales
+
+Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación extended target frente a modelos CFA bifactor tradicionales en contextos simulados con múltiples factores generales, factores específicos correlacionados o no, y distintos escenarios de cargas cruzadas.
+
+## Objetivos Específicos
+
+1.  Comparar el ajuste global y la recuperación de parámetros entre modelos CFA y ESEM bifactor en estructuras con 2 FGs.
+2.  Evaluar el impacto de omitir un FG sobre las correlaciones estimadas entre FEs.
+3.  Determinar si modelar correlaciones entre FEs mejora el ajuste o genera sesgos cuando estas no existen en la población.
+4.  Explorar la aparición de cargas cruzadas espurias en modelos ESEM bifactor bajo estructuras simuladas sin cargas cruzadas.
+5.  Analizar el efecto del tamaño muestral sobre convergencia, ajuste y precisión de estimaciones.
+6.  Estimar el sesgo relativo en cargas, correlaciones y convergencia según modelo y condición simulada.
+
+# Metodología
+
+## Diseño de Simulación
+
+| Factor                      | Niveles                                    |
+|-----------------------------|--------------------------------------------|
+| Correlación entre FGs       | .20, .50, .80                              |
+| Correlación entre FEs       | 0.00 (ortogonales), 0.30 (correlacionados) |
+| \% de cargas cruzadas       | 0%, 20%, 40%                               |
+| Magnitud de cargas cruzadas | 0.15, 0.25, 0.40 (solo si % \> 0%)         |
+| Ruta de cargas cruzadas     | Dentro del mismo FG, hacia otro FG         |
+| Tamaño muestral             | 200, 500, 1000                             |
+| Estructura simulada         | 2 FGs, 6 FEs (3 por FG), 5 ítems por FE    |
+| Cargas principales (lambda) | FG: 0.60–0.80; FE: 0.30 ± 0.05             |
+
+→ Total: 234 combinaciones de simulación únicas
+
+## Modelos a estimar
+
+-   CFA bifactor:
+    a)  1 FG con FEs ortogonales (1FG-FE⊥)
+    b)  1 FG con FEs correlacionados (1FG-FE↔)
+    c)  2 FGs con FEs ortogonales (2FG-FE⊥)
+    d)  2 FGs con FEs correlacionados (2FG-FE↔)
+-   ESEM bifactor extended target:
+    e)  1 FG con FEs ortogonales (1FG-FE⊥)
+    f)  1 FG con FEs correlacionados (1FG-FE↔)
+    g)  2 FGs con FEs ortogonales (2FG-FE⊥)
+    h)  2 FGs con FEs correlacionados (2FG-FE↔)
+
+## Plan de Análisis
+
+1.  **Ajuste global del modelo**: CFI, TLI, RMSEA, SRMR
+2.  **Convergencia**: porcentaje de soluciones convergentes por condición y modelo
+3.  **Precisión en recuperación de parámetros**:
+    -   Cargas principales y cruzadas: RMSE, sesgo relativo
+    -   Correlaciones entre FGs y entre FEs
+4.  **Detección de efectos espurios**:
+    -   Cargas cruzadas estimadas donde no deberían
+    -   Correlaciones entre FEs inducidas por omisión de FG
+5.  **Comparación de modelos**:
+    -   ¿Cuál ofrece mejor ajuste y menor sesgo según cada estructura?
+    -   ¿Cuál es más robusto frente a especificación incorrecta?
+
+# Sobre la Simulación
+
+## Procedimientos con software
+
+::::: columns
+::: {.column width="80%"}
+Para la ejecución de este estudio se utilizó el paquete [`SimDesign`](https://CRAN.R-project.org/package=SimDesign) de R, el cual permite construir estudios de simulación siguiendo principios robustos de diseño experimental:
+
+1.  **`createDesign()`**: genera la matriz de condiciones del estudio.
+2.  **`Generate()`**: simula los datos en base a cada condición.
+3.  **`Analyse()`**: ejecuta los análisis especificados.
+4.  **`Summarise()`**: resume resultados por condición.
+5.  **`runSimulation()`**: integra todo el procedimiento con múltiples replicaciones.
+:::
+
+::: {.column width="20%"}
+<br>
+<br>
+<br>
+![](images/SimDesign-logo.png)
+:::
+:::::
+
+## Gestión de scripts
+
+El proyecto tendrá una estructura modular para la adecuada gestión de la simulación:
+
+```
+/simulacion-esem-bifactor/
+│
+├── 01-design.R            # Definición del diseño con createDesign()
+├── 02-generate.R          # Función Generate()
+├── 03-analyse.R           # Función Analyse()
+├── 04-summarise.R         # Función Summarise()
+├── 05-runSimulation.R     # Lógica principal que une todo y lanza SimDesign
+│
+├── /helpers/              # Funciones auxiliares (ej. crear matrices lambda, etc.)
+│   └── simulate_structure.R
+│
+└── /outputs/              # Carpeta para guardar resultados
+```
+
+## Primero: createDesign()
+
+```{r}
+library(SimDesign)
+
+Design <- createDesign(
+  corr_FG = c(0.20, 0.50, 0.80),
+  corr_FE = c(0.00, 0.30),
+  crossload_perc = c(0, 0.2, 0.4),
+  crossload_mag = c(0.15, 0.25, 0.40),
+  crossload_route = c("sameFG", "diffFG"),
+  N = c(200, 500, 1000),
+  subset = !(
+    crossload_perc == 0 &
+      (crossload_mag != 0.15 | crossload_route != "sameFG")
+  )
+)
+```
+
+## Primero: createDesign()
+
+```{r}
+Design
+```
+
+
+## Referencias
+
+::: {#refs style="line-height: 1.5;"}
+:::

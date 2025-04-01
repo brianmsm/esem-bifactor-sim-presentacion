@@ -1,0 +1,4 @@
+- source: index.qmd
+  netlify:
+    - id: 3dd29fe8-87b4-413b-a624-489a6597a65c
+      url: https://harmonious-yeot-eb27fd.netlify.app
