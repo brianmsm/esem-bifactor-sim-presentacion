@@ -103,7 +103,7 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
 | Estructura simulada             | 2 FGs, 6 FEs (3 por FG), 5 ítems por FE                                  |
 | Cargas principales   | FG: 0.60–0.80; FE: 0.30 ± 0.05                                           |
 
-→ **Total: 180 combinaciones de simulación únicas**
+→ **Total: 180 combinaciones de simulación únicas (rep = 500)**
 
 - Cuando `crossload_mag = "none"`, el `% de ítems` es `"0"`, `crossload_route = "no aplica"` y `crossload_FG = "none"`.
 - Cuando `crossload_mag = "phantom"`, todas las cargas cruzadas (FE y FG) son ~0 (±0.05).
@@ -270,22 +270,30 @@ plot(esem_matrix, main = "ESEM Bifactor con carga cruzada")
 
 ## Plan de Análisis
 
-1.  **Ajuste global del modelo**: CFI, TLI, RMSEA, SRMR
+1.  **Ajuste global del modelo**: CFI, TLI, RMSEA, SRMR, USRMR
 2.  **Convergencia**: porcentaje de soluciones convergentes por condición y modelo
-3.  **Precisión en recuperación de parámetros**:
-    -   Cargas principales y cruzadas: RMSE, sesgo relativo
-    -   Correlaciones entre FGs y entre FEs
-4.  **Detección de efectos espurios**:
-    -   Cargas cruzadas estimadas donde no deberían
-    -   Correlaciones entre FEs inducidas por omisión de FG
+3. **Precisión de los parámetros**  
+   - Sesgo y RMSE de cargas principales y cruzadas  
+   - **MCSE** de cada estadístico (error Monte‑Carlo) 
+    $$
+    \text{MCSE}(\hat{\theta}) = \frac{SD(\hat{\theta})}{\sqrt{R}}
+    $$
+    
+   - **Bias de EE**: $\overline{SE} - SD(\hat \theta)$ relativo a $SD(\hat \theta)$ 
+   - **Cobertura 95 %** de los IC para $\lambda$ y $\rho$  
     
 ## Plan de Análisis
 
+4. **Detección de efectos espurios**  
+   - *Cargas estimadas más allá de lo que debería*:  
+     - Si $\lambda_{pop}=0$ → espuria si $|\hat \lambda| ≥ .10$  (.15 en análisis de sensibilidad)
+     - Si $\lambda_{pop} \approx 0$ (phantom) → espuria si $|\hat \lambda - \lambda_{pop}| ≥ .10$. 
+   - *Correlaciones*: criterio análogo para $\rho_{pop}=0$  
 5.  **Comparación de modelos**:
     -   ¿Cuál ofrece mejor ajuste y menor sesgo según cada estructura?
     -   ¿Cuál es más robusto frente a especificación incorrecta?
 6. **Evaluación según tamaño muestral**:
-    - Comparar convergencia, ajuste y precisión entre N = 200, 500 y 1000
+    - Comparar convergencia, ajuste y precisión entre N = 200, 500 y 800.
 
 # Sobre la Simulación
 
