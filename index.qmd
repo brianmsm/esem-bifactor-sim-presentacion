@@ -128,6 +128,18 @@ Evaluar la utilidad y precisión de los modelos ESEM bifactor con rotación exte
     g)  2 FGs con FEs ortogonales (2FG-FE⊥)
     h)  2 FGs con FEs correlacionados (2FG-FE↔)
     
+## Estimadores
+
+Cada modelo se ajustará dos veces:  
+
+1. **ML** (máxima verosimilitud clásica)  
+2. **MLR** (máxima verosimilitud robusta Satorra–Bentler) 
+
+::: {.callout-note}
+Esto permitirá comprobar la robustez de los resultados ante pequeñas desviaciones de normalidad que podrían ser introducidas al especificar las múltiples condiciones de simulación.
+:::
+
+    
 ## Ejemplo de modelos:
 
 ```{r}
