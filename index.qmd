@@ -250,16 +250,18 @@ library(plot.matrix)
 ::::: columns
 ::: {.column width="50%"}
 ```{r}
-#| fig-width: 6
+#| fig-width: 6.5
 #| fig-height: 5.5
+par(mar = c(4, 4, 2, 3.5))
 plot(bifactor_cfa_matrix, main = "CFA Bifactor")
 ```
 :::
 
 ::: {.column width="50%"}
 ```{r}
-#| fig-width: 6
+#| fig-width: 6.5
 #| fig-height: 5.5
+par(mar = c(4, 4, 2, 3.5))
 plot(esem_matrix, main = "ESEM Bifactor con carga cruzada")
 ```
 :::
